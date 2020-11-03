@@ -24,8 +24,8 @@ def signup(request):
         context = {'form': form, 'error_message': error_message}
         return render(request, 'registration/signup.html', context)
 
-def profile_detail(request, user_id):
-    profile = Profile.objects.get(user_id=user_id)
+def profile_detail(request, username, user_id):
+    profile = Profile.objects.get(user=user_id)
     return render(request, 'profiles/detail.html', {'profile': profile})
 
 def my_profile(request):
