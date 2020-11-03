@@ -25,14 +25,8 @@ def signup(request):
         return render(request, 'registration/signup.html', context)
 
 # Profile routes
-<<<<<<< HEAD
-def profile_detail(request, username):
-    user = User.objects.get(username=username)
-    profile = Profile.objects.get(user=user)
-=======
 def profile_detail(request, user_id):
     profile = Profile.objects.get(user=user_id)
->>>>>>> submain
     return render(request, 'profiles/detail.html', {'profile': profile})
 
 def my_profile(request):
