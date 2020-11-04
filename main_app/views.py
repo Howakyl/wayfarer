@@ -86,6 +86,7 @@ def city_index(request):
     return render(request, 'cities/index.html', {'cities': cities})
 
 def city_detail(request, city_id):
+    success_message = ''
     user = User.objects.get(id = request.user.id)
     city = City.objects.get(id = city_id)
     posts = Post.objects.filter(city=city).order_by('-id')
@@ -97,8 +98,8 @@ def city_detail(request, city_id):
             new_post.user = request.user
             new_post.city = city
             new_post.save()
-
-            return render(request, 'cities/detail.html', {'city': city, 'posts': posts})
+            success_message = f'Post titled: {new_post.title} successfully created'
+            return render(request, 'cities/detail.html', {'city': city, 'posts': posts, 'success_message': success_message})
     else:
         form = PostForm()
         return render(request, 'cities/detail.html', {'city': city, 'posts': posts, 'form': form})
